@@ -7,7 +7,7 @@ import Button from "fulldev-ui/components/Button.astro";
 
 <Layout title="Welcome to Astro.">
   <main>
-    <Heading color="brand" contrast={false}> Welcome to Astro </Heading>
+    <Heading color="brand" contrast={false}> Sube una Imagen para probar diferentes efectos en tus fotos </Heading>
     <CldUploadWidget
 			id="upload-widget"
       uploadPreset="demoHalloween"
@@ -18,7 +18,7 @@ import Button from "fulldev-ui/components/Button.astro";
         language: "es",
       }}
     >
-      <Button color="brand" as="button">Upload</Button>
+      <Button color="brand" as="button">Subir Imagen</Button>
     </CldUploadWidget>
   </main>
 </Layout>
@@ -45,6 +45,10 @@ import Button from "fulldev-ui/components/Button.astro";
     margin: 0 auto;
     padding-top: 100px;
     text-align: center;
+  }
+
+  button {
+    margin-top: 15px;
   }
 </style>
 

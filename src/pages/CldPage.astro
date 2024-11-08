@@ -1,0 +1,121 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { CldImage } from "astro-cloudinary";
+
+const { searchParams } = Astro.url;
+const id = searchParams.get("id");
+
+if (id === null) {
+  return Astro.redirect("/");
+}
+---
+
+<Layout title="Otros efectos">
+  <main>
+    <header>
+      <h1>Antes y Después</h1>
+    </header>
+
+    <section>
+      <h2>Escala de Grises</h2>
+      <div class="two-up">
+        <CldImage src={id} alt="Imagen Original" sizes="100vw" />
+
+        <CldImage src={id} grayscale alt="Imagen con Efecto" sizes="100vw" />
+      </div>
+    </section>
+    <section>
+      <h2>Imagen Pixeleada</h2>
+      <div class="two-up">
+        <CldImage src={id} alt="Imagen Original" sizes="100vw" />
+
+        <CldImage src={id} pixelate alt="Imagen con Efecto" sizes="100vw" />
+      </div>
+    </section>
+    <section>
+      <h2>Imagen Con texto</h2>
+      <div class="two-up">
+        <CldImage src={id} alt="Imagen Original" sizes="100vw" />
+
+        <CldImage
+          src={id}
+          overlays={[
+            {
+              text: {
+                color: "blue",
+                fontFamily: "Source Sans Pro",
+                fontSize: 300,
+                fontWeight: "black",
+                text: "JDM",
+              },
+              effects: [
+                {
+                  shear: "40:0",
+                  opacity: 50,
+                },
+              ],
+            },
+          ]}
+          alt="Imagen con Efecto"
+          sizes="100vw"
+        />
+      </div>
+    </section>
+    <section>
+      <h2>Imagen Superpuesta</h2>
+      <div class="two-up">
+        <CldImage src={id} alt="Imagen Original" sizes="100vw" />
+
+        <CldImage
+          src={id}
+          overlays={[
+            {
+              publicId: "skyline",
+              position: {
+                x: 50,
+                y: 50,
+                gravity: "north_east",
+              },
+              effects: [
+                {
+                  crop: "fit",
+                  width: 550,
+                  height: 500,
+                  border: "5px_solid_black",
+                  radius: "100",
+                },
+              ],
+            },
+          ]}
+          alt="Imagen con Efecto"
+          sizes="100vw"
+        />
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  main {
+    width: 800px;
+    margin: 0 auto;
+    padding-top: 50px;
+    text-align: center;
+    color: tomato;
+  }
+
+  two-up {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  img {
+    width: 100%;
+    max-width: 45%;
+    height: auto;
+    border-radius: 12px;
+    margin-left: 15px;
+  }
+</style>
